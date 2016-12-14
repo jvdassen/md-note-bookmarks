@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .container
+    .jumbotron
+      h1 Add a new bookmark
+    p You are adding #{url}
+    p#invisible #{url}
+    form
+      .form-group
+        label(for='usr') Title:
+        input#usr.form-control(type='text')
+      .form-group
+        label(for='comment') Description:
+        textarea#comment.form-control(rows='5')
+
+    button#bookmark-submit.btn.btn-primary.btn-block Submit

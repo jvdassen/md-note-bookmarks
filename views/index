@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .container
+    .jumbotron
+      h1 Add a new bookmark
+    ul
+      for bookmark in bookmarks
+        li = bookmark.url

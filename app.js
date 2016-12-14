@@ -11,6 +11,7 @@ var bookmarks = require('./routes/bookmarks');
 
 var app = express();
 
+const database;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,31 +19,25 @@ app.set('view engine', 'jade');
 app.set('port', 8080);
 app.listen(app.get('port'));
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-  // Connection URL
+// var MongoClient = require('mongodb').MongoClient
+//   , assert = require('assert');
 
 var mongodburl = 'mongodb://localhost:27017/md-note-bookmark';
 
-if (process.argv[2]){
-	mongodburl = process.argv[2];	
+if (process.argv.length>2){
+	mongodburl = process.argv[2];
   }
 else {
 	console.log("no mongodb url passed. using default settings");
 	console.log("E.g: $ node app.js 'mongodb://localhost:3001/db'");
 }
 
-MongoClient.connect(mongodburl, function(err, db) {
-   assert.equal(null, err);
-   console.log("Connected successfully to server:");
-   console.log(mongodburl);
-   });
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -67,19 +62,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-
-var insertDocuments = function(db, callback){
-	var collection = db.collection('bookmarks');
-	
-	collection.insertMany([
-	{url : 'http://tutorials.com', tags: ["tech", "tutorial"]}, {url : 'http://google.com'}, {url: 'http://nfl.com'}
-	], function(err, result) {
-		assert.equal(err, null);
-	  	assert.equal(3, result.result.n);
-		console.log("Inserted 3 documents into the collection");
-        	});
-	}
 
 module.exports = app;

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .container
+    .jumbotron
+      h1 #{title}
+    form
+      .form-group
+        label(for='url') URL:
+        input#url.form-control(type='text')
+      .form-group
+        label(for='usr') Title:
+        input#usr.form-control(type='text')
+      .form-group
+        label(for='comment') Description:
+        textarea#comment.form-control(rows='5')
+
+    button#bookmark-submit-manual.btn.btn-primary.btn-block Submit
