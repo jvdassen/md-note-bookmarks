@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var bookmarks = require('./routes/bookmarks');
-
+ 
+var exports = module.exports = {};
 var app = express();
 
 const database;
@@ -22,7 +23,7 @@ app.listen(app.get('port'));
 // var MongoClient = require('mongodb').MongoClient
 //   , assert = require('assert');
 
-var mongodburl = 'mongodb://localhost:27017/md-note-bookmark';
+var mongodburl = 'mongodb://localhost:3001/bookmarks';
 
 if (process.argv.length>2){
 	mongodburl = process.argv[2];
@@ -63,4 +64,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+exports.app = app;
+exports.mongodburl = mongodburl;
+

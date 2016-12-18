@@ -3,23 +3,26 @@ var main = require('../app');
 var router = express.Router();
 var mongoose = require('mongoose');
 
+mongodburl = 'mongodb://localhost:3001/bookmarks'
+
+mongoose.connect(mongodburl);
+
 var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+// mongoose.connection.once('open', function() {
+//   console.log('open');
+// });
 
-db.on('error', console.error);
-db.once('open', function() {
-  // Create your schemas and models here.
-});
-
-mongoose.connect('mongodb://localhost:3001/bookmarks');
-
-var bookmarkSchema = new mongoose.Schema({
+var bookmarkSchema = mongoose.Schema({
   url: String
 , title: String
 , description: String
 });
-
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
-
+Bookmark.find(function(err, bookmarks){
+  if (err) return console.error(err);
+  console.log(bookmarks)
+});
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
@@ -39,12 +42,16 @@ router.post('/', function(req, res, next) {
 		res.send(req.body);
 	}
 	else {
-		res.send('sup');;
+		res.send('sup');
 	}
 });
 
 router.get('/', function(req, res, next) {
-  res.send('find your bookmarks here');
+  Bookmark.find({}, function(err, bookmarks){
+      res.render('index',{
+      bookmarks : bookmarks
+    });
+  });
 });
 
 

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .container
+    .jumbotron
+      h1 Your bookmarks
+    ul.list-unstyled
+      for bookmark in bookmarks
+        li#bookmark-item
+          h4= bookmark.title
+          a(href= bookmark.url)= bookmark.url
+          p= bookmark.description

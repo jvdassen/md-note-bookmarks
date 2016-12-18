@@ -36,6 +36,9 @@ jQuery( document ).ready(function() {
 		});
 		console.log(jQuery('#invisible').text())
 	});
+	jQuery('#bookmark-item').click(function(){
+		console.log(jQuery(this).children('a').click());
+	});
 
 
 });
