@@ -7,10 +7,13 @@ a {
   color: #00B7FF;
 }
  */
+ body {
+   background-color: rgb(39,56,86);
+ }
 #invisible{
   display: none;
 }
-#bookmark-item {
+.bookmark-item {
   //border-style: solid;
   border-width: 1px;
   border-radius: 5px;

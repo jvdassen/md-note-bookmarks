@@ -9,6 +9,7 @@ mongoose.connect(mongodburl);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+
 // mongoose.connection.once('open', function() {
 //   console.log('open');
 // });
@@ -36,7 +37,7 @@ router.post('/', function(req, res, next) {
 
   bm.save(function(err, bm) {
     if (err) return console.error(err, '##@@#');
-    console.dir(bm);
+    //console.dir(bm);
   });
 
 		res.send(req.body);

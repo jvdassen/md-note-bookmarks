@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var bookmarks = require('./routes/bookmarks');
- 
+
 var exports = module.exports = {};
 var app = express();
 
@@ -20,9 +20,6 @@ app.set('view engine', 'jade');
 app.set('port', 8080);
 app.listen(app.get('port'));
 
-// var MongoClient = require('mongodb').MongoClient
-//   , assert = require('assert');
-
 var mongodburl = 'mongodb://localhost:3001/bookmarks';
 
 if (process.argv.length>2){
@@ -33,8 +30,6 @@ else {
 	console.log("E.g: $ node app.js 'mongodb://localhost:3001/db'");
 }
 
-
-// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -63,7 +58,3 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-exports.app = app;
-exports.mongodburl = mongodburl;
-

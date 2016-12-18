@@ -1,12 +1,22 @@
 extends layout
 
 block content
-  .container
-    .jumbotron
+  .jumbotron
+    .page-header
       h1 Your bookmarks
+      button.btn.btn-link
+        a(href='/bookmarks/') list
+      button.btn.btn-link
+        a(href='/bookmarks/add') add
+      button.btn.btn-link
+        a(href='#') delete
+
+
+  .container
     ul.list-unstyled
       for bookmark in bookmarks
-        li#bookmark-item
-          h4= bookmark.title
-          a(href= bookmark.url)= bookmark.url
-          p= bookmark.description
+        .bookmark-container.col-md-6
+          li.bookmark-item
+            h4= bookmark.title
+            a(href= bookmark.url)= bookmark.url
+            p= bookmark.description
