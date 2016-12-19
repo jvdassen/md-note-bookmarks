@@ -18,5 +18,8 @@ block content
         .bookmark-container.col-md-6
           li.bookmark-item
             h4= bookmark.title
+              span#edit-glyphicon.glyphicon.glyphicon-pencil
+              if bookmark.favicon
+                img(src= bookmark.favicon)#bookmark-favicon
             a(href= bookmark.url)= bookmark.url
             p= bookmark.description

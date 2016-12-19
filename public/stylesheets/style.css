@@ -22,3 +22,10 @@ a {
   margin-bottom: 5px;
   background-color: rgb(238,238,238);
 }
+#edit-glyphicon, #bookmark-favicon {
+  float: right;
+}
+#bookmark-favicon {
+  height: 22px;
+  margin-right: 10px;
+}

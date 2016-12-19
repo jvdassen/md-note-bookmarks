@@ -2,8 +2,8 @@ var express = require('express');
 var main = require('../app');
 var router = express.Router();
 var mongoose = require('mongoose');
-
-mongodburl = 'mongodb://localhost:3001/bookmarks'
+var favicon = require('favicon');
+mongodburl = 'mongodb://localhost:3001/bookmarks';
 
 mongoose.connect(mongodburl);
 
@@ -18,6 +18,7 @@ var bookmarkSchema = mongoose.Schema({
   url: String
 , title: String
 , description: String
+, favicon: String
 });
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
 Bookmark.find(function(err, bookmarks){
@@ -27,24 +28,30 @@ Bookmark.find(function(err, bookmarks){
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
+  var favicon_url;
+  favicon(req.body.url, function(err, favicon){
+    if (req.body) {
+  		var bm = new Bookmark({
+      url: req.body.url
+      , title: req.body.title
+      , description: req.body.description
+      , favicon: favicon
+    });
+    console.log(bm);
 
-	if (req.body) {
-		var bm = new Bookmark({
-    url: req.body.url
-    , title: req.body.title
-    , description: req.body.description
+    bm.save(function(err, bm) {
+      if (err) return console.error(err, '##@@#');
+      //console.dir(bm);
+    });
+
+  		res.send(req.body);
+  	}
+  	else {
+  		res.send('sup');
+  	}
+
   });
 
-  bm.save(function(err, bm) {
-    if (err) return console.error(err, '##@@#');
-    //console.dir(bm);
-  });
-
-		res.send(req.body);
-	}
-	else {
-		res.send('sup');
-	}
 });
 
 router.get('/', function(req, res, next) {

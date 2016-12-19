@@ -41,6 +41,9 @@ jQuery( document ).ready(function() {
 					url: url,
 					description: jQuery('#comment').val(),
 					title: jQuery('#usr').val()
+				},
+				success: function(){
+					window.location.href = "/bookmarks";
 				}
 		});
 		console.log(jQuery('#invisible').text())
