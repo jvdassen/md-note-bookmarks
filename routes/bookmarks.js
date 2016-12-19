@@ -61,7 +61,14 @@ router.get('/', function(req, res, next) {
     });
   });
 });
-
+// router.get('/:id', function(req, res, next) {
+//   Bookmark.findById(req.params.id, function(err, bookmarks){
+//       res.render('index',{
+//       bookmarks : bookmarks
+//     });
+//     console.log(bookmarks);
+//   });
+// });
 
 router.get('/add/', function(req, res, next) {
 	if(req.query.url) {
