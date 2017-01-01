@@ -61,14 +61,7 @@ router.get('/', function(req, res, next) {
     });
   });
 });
-// router.get('/:id', function(req, res, next) {
-//   Bookmark.findById(req.params.id, function(err, bookmarks){
-//       res.render('index',{
-//       bookmarks : bookmarks
-//     });
-//     console.log(bookmarks);
-//   });
-// });
+
 
 router.get('/add/', function(req, res, next) {
 	if(req.query.url) {
@@ -81,6 +74,24 @@ router.get('/add/', function(req, res, next) {
 	else{
 		res.render('bookmark-manual', { title: 'Add a Bookmark' });
 	}
+});
+
+router.get('/:id', function(req, res, next) {
+  Bookmark.findById(req.params.id, function(err, bookmarks){
+      res.render('bookmark-id',{
+      bookmark : bookmarks
+    });
+    console.log(bookmarks);
+  });
+});
+
+router.delete('/:id', function(req, res, next) {
+  Bookmark.remove({_id: req.params.id}, function(err, bookmarks){
+      if (err) {
+          res.send('error deleting: ' + req.params.id)
+      }
+      res.send('deleted: ' + req.params.id);
+  });
 });
 
 module.exports = router;

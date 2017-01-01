@@ -11,14 +11,13 @@ block content
         li
           a(href='/bookmarks/add') add
         li
-          a(href='#')#delete-btn delete
+          a(href='#') delete
         li
           a(href='#') tags
 
   .container
     ul.list-unstyled
-      for bookmark in bookmarks
-        .bookmark-container.col-md-4
+        .bookmark-container.col-md-12
           li.bookmark-item
             h4= bookmark.title
               span#edit-glyphicon.glyphicon.glyphicon-pencil

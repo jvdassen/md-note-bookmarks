@@ -55,6 +55,34 @@ jQuery( document ).ready(function() {
 		console.log(jQuery(this).children('a').attr('href'))
 		window.location.href = jQuery(this).children('a').attr('href');
 	});
+	jQuery('#delete-btn').click(function(){
+		jQuery('.bookmark-item').css('outline', 'none')
+		jQuery('.bookmark-item').hover(
+			function(){
+				jQuery(this).css('outline', '1px solid rgb(180,180,180)');},
+			function(){
+				jQuery(this).css('outline', 'none');
+		});
+		jQuery('.bookmark-item').click(function(e){
+			e.preventDefault();
+			jQuery(this).remove();
+		});
+	});
+
+
+	// jQuery('#delete-btn').click(function(){
+	// 	jQuery('.bookmark-item').css('filter', 'blur(2px)')
+	// 	jQuery('.bookmark-item').hover(
+	// 		function(){
+	// 			jQuery(this).css('filter', 'none')},
+	// 		function(){
+	// 			jQuery(this).css('filter', 'blur(2px)')
+	// 	});
+	// 	jQuery('.bookmark-item').click(function(e){
+	// 		e.preventDefault();
+	// 		jQuery(this).remove();
+	// 	});
+	// });
 
 
 });
