@@ -1,9 +1,19 @@
 extends layout
 
 block content
-  .jumbotron
-    h1 Add a new bookmark
-  .container
+  nav.navbar.navbar-inverse.navbar-fixed-top
+    .container-fluid
+      .navbar-header
+        a.navbar-brand.m-spacing(href='/bookmark') BOOKMARKS
+      ul.nav.navbar-nav
+        li.active
+          a(href='/bookmarks') ALL
+        li
+          a(href='/bookmarks/add') ADD
+        li
+          a(href='#')#delete-btn DELETE
+        li
+          a(href='#') TAGS  .container
     p You are adding #{url}
     p#invisible #{url}
     form

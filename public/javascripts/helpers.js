@@ -1,17 +1,5 @@
-// jQuery('#he3').click(function(){
-//
-// $.ajax({
-// 	  type: "POST",
-// 	  url: 'http://localhost:8080/bookmarks/',
-// 	  data: {
-// 			url: jQuery('#url').val(),
-// 			description: jQuery('#description').val(),
-// 			title: jQuery('#usr').val()
-// 		}
-// });
-//
-// });
 jQuery( document ).ready(function() {
+	var deleting = false;
 
 	jQuery('#bookmark-submit-manual').click(function(){
 		url = jQuery('#url').val();

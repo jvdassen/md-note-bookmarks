@@ -1,8 +1,19 @@
 extends layout
 
 block content
-  .jumbotron
-    h1 #{title}
+  nav.navbar.navbar-inverse.navbar-fixed-top
+    .container-fluid
+      .navbar-header
+        a.navbar-brand.m-spacing(href='/bookmark') BOOKMARKS
+      ul.nav.navbar-nav
+        li
+          a(href='/bookmarks') ALL
+        li.active
+          a(href='/bookmarks/add') ADD
+        li
+          a(href='#')#delete-btn DELETE
+        li
+          a(href='#') TAGS
   .container
     form
       .form-group
