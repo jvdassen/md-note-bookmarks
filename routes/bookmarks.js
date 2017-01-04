@@ -10,20 +10,16 @@ mongoose.connect(mongodburl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
-// mongoose.connection.once('open', function() {
-//   console.log('open');
-// });
-
 var bookmarkSchema = mongoose.Schema({
   url: String
 , title: String
 , description: String
 , favicon: String
+, id: String
 });
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
 Bookmark.find(function(err, bookmarks){
   if (err) return console.error(err);
-  console.log(bookmarks)
 });
 
 /* GET users listing. */
@@ -37,7 +33,6 @@ router.post('/', function(req, res, next) {
       , description: req.body.description
       , favicon: favicon
     });
-    console.log(bm);
 
     bm.save(function(err, bm) {
       if (err) return console.error(err, '##@@#');
@@ -81,7 +76,6 @@ router.get('/:id', function(req, res, next) {
       res.render('bookmark-id',{
       bookmark : bookmarks
     });
-    console.log(bookmarks);
   });
 });
 

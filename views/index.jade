@@ -4,7 +4,7 @@ block content
   nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
       .navbar-header
-        a.navbar-brand.m-spacing(href='/bookmark') BOOKMARKS
+        a.navbar-brand.m-spacing(href='/bookmarks') BOOKMARKS
       ul.nav.navbar-nav
         li.active
           a(href='/bookmarks') ALL
@@ -19,9 +19,9 @@ block content
     ul.list-unstyled
       for bookmark in bookmarks
         .bookmark-container.col-md-4
-          li.bookmark-item
+          li.bookmark-item(data= bookmark.id)
             h4= bookmark.title
-              span#edit-glyphicon.glyphicon.glyphicon-pencil
+              //span#edit-glyphicon.glyphicon.glyphicon-pencil
               if bookmark.favicon
                 img(src= bookmark.favicon)#bookmark-favicon
             a(href= bookmark.url)= bookmark.url

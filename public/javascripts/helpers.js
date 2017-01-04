@@ -17,6 +17,7 @@ jQuery( document ).ready(function() {
 		});
 		window.location.href = "/bookmarks";
 	});
+
 	jQuery('#bookmark-submit').click(function(){
 		url = jQuery('#invisible').text()
 		if (!url.match(/http/i)) {
@@ -40,21 +41,40 @@ jQuery( document ).ready(function() {
 	});
 
 	jQuery('.bookmark-item').click(function(){
-		console.log(jQuery(this).children('a').attr('href'))
-		window.location.href = jQuery(this).children('a').attr('href');
-	});
-	jQuery('#delete-btn').click(function(){
-		jQuery('.bookmark-item').css('outline', 'none')
-		jQuery('.bookmark-item').hover(
-			function(){
-				jQuery(this).css('outline', '1px solid rgb(180,180,180)');},
-			function(){
-				jQuery(this).css('outline', 'none');
-		});
-		jQuery('.bookmark-item').click(function(e){
-			e.preventDefault();
+		if (!deleting) {
+			window.location.href = jQuery(this).children('a').attr('href');
+		}
+		else {
 			jQuery(this).remove();
-		});
+			var dataid = jQuery(this).attr('data');
+			jQuery.ajax({
+				url: '/bookmarks/' + dataid,
+				type: 'DELETE',
+				success: function(data) {
+					console.log(data);
+				}
+			});
+			console.log('deleting: ' + dataid);
+		}
+	});
+
+	jQuery('#delete-btn').click(function(){
+		if (!deleting) {
+			deleting = true;
+			jQuery('#delete-btn').text('X');
+			jQuery('.bookmark-item').css('outline', 'none')
+			jQuery('.bookmark-item').hover(
+				function(){
+					jQuery(this).css('outline', '1px solid rgb(180,180,180)');},
+				function(){
+					jQuery(this).css('outline', 'none');
+			});
+		}
+		else {
+			deleting = false;
+			jQuery('#delete-btn').text('DELETE');
+
+		}
 	});
 
 
