@@ -8,7 +8,7 @@ jQuery( document ).ready(function() {
 		}
 		$.ajax({
 			  type: "POST",
-			  url: 'http://localhost:8080/bookmarks/',
+			  url: '/bookmarks/',
 			  data: {
 					url: url,
 					description: jQuery('#comment').val(),
@@ -25,7 +25,7 @@ jQuery( document ).ready(function() {
 		}
 		$.ajax({
 				type: "POST",
-				url: 'http://localhost:8080/bookmarks/',
+				url: '/bookmarks/',
 				data: {
 					url: url,
 					description: jQuery('#comment').val(),
