@@ -20,8 +20,8 @@ block content
   .container
     ul.list-unstyled
       for bookmark in bookmarks
-        .bookmark-container.col-md-4
-          li.bookmark-item(data= bookmark.id)
+        .bookmark-container.col-sm-4.col-md-3
+          li.bookmark-item(data= bookmark._id)
             h4= bookmark.title
               //span#edit-glyphicon.glyphicon.glyphicon-pencil
               if bookmark.favicon

@@ -46,7 +46,7 @@ jQuery( document ).ready(function() {
 		}
 		else {
 			jQuery(this).remove();
-			var dataid = jQuery(this).attr('data');
+			var dataid = jQuery(this).attr('data').replace(/^"/, '').replace(/"$/, '');
 			jQuery.ajax({
 				url: '/bookmarks/' + dataid,
 				type: 'DELETE',

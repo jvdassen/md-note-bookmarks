@@ -28,7 +28,8 @@ a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   height: 145px;
-  overflow: scroll;
+  overflow: auto;
+  overflow-x: hidden;
 }
 #edit-glyphicon, #bookmark-favicon {
   float: right;

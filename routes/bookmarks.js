@@ -15,7 +15,7 @@ var bookmarkSchema = mongoose.Schema({
 , title: String
 , description: String
 , favicon: String
-, id: String
+, _id: String
 });
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
 Bookmark.find(function(err, bookmarks){
@@ -73,7 +73,7 @@ router.get('/add/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   Bookmark.findById(req.params.id, function(err, bookmarks){
-      res.render('bookmark-id',{
+    res.render('bookmark-id',{
       bookmark : bookmarks
     });
   });
@@ -81,10 +81,12 @@ router.get('/:id', function(req, res, next) {
 
 router.delete('/:id', function(req, res, next) {
   Bookmark.remove({_id: req.params.id}, function(err, bookmarks){
-      if (err) {
-          res.send('error deleting: ' + req.params.id)
-      }
+    if (err) {
+      res.send('error deleting: ' + req.params.id)
+    }
+    else {
       res.send('deleted: ' + req.params.id);
+    }
   });
 });
 
