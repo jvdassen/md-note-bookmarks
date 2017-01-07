@@ -15,7 +15,6 @@ var bookmarkSchema = mongoose.Schema({
 , title: String
 , description: String
 , favicon: String
-, _id: String
 });
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
 Bookmark.find(function(err, bookmarks){
