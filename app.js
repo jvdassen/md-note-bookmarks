@@ -6,19 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var bookmarks = require('./routes/bookmarks');
 
 var exports = module.exports = {};
 var app = express();
 
-const database;
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('port', 8080);
-app.listen(app.get('port'));
+app.listen(8080);
 
 var mongodburl = 'mongodb://localhost:3001/bookmarks';
 
@@ -38,7 +35,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 app.use('/bookmarks', bookmarks);
 
 // catch 404 and forward to error handler
