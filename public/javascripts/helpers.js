@@ -61,8 +61,9 @@ jQuery( document ).ready(function() {
 	jQuery('#delete-btn').click(function(){
 		if (!deleting) {
 			deleting = true;
+			jQuery('#delete-btn').parent().attr('class','active');
 			jQuery('#delete-btn').text('X');
-			jQuery('.bookmark-item').css('outline', 'none')
+			jQuery('.bookmark-item').css('outline', 'none');
 			jQuery('.bookmark-item').hover(
 				function(){
 					jQuery(this).css('outline', '1px solid rgb(180,180,180)');},
@@ -72,6 +73,7 @@ jQuery( document ).ready(function() {
 		}
 		else {
 			deleting = false;
+			jQuery('#delete-btn').parent().attr('class','');
 			jQuery('#delete-btn').text('DELETE');
 
 		}
