@@ -4,10 +4,10 @@ block content
   nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
       .navbar-header
-        a.navbar-brand.m-spacing(href='/bookmarks') BOOKMARKS
       ul.nav.navbar-nav
-        li.active
-          a(href='/bookmarks') ALL
+        li.active#brand-icon-container
+          a(href='/bookmarks')
+            img#brand-icon.brand-active(src='/images/inclined-puspin-32-active.png')
         li
           a(href='/bookmarks/add') ADD
         li

@@ -78,7 +78,16 @@ jQuery( document ).ready(function() {
 
 		}
 	});
-
+	jQuery('#brand-icon-container').hover(
+		function() {
+			jQuery('#brand-icon').attr('src', '/images/inclined-puspin-32-active.png')
+		},
+		function(){
+			if (jQuery('#brand-icon').attr('class') !== 'brand-active') {
+				jQuery('#brand-icon').attr('src', '/images/inclined-puspin-32-inactive.png')
+			}
+		}
+	);
 
 	// jQuery('#delete-btn').click(function(){
 	// 	jQuery('.bookmark-item').css('filter', 'blur(2px)')

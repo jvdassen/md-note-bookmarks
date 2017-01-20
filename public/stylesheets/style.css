@@ -31,6 +31,15 @@ a {
   overflow: auto;
   overflow-x: hidden;
 }
+#brand-icon-container {
+  height: 40px;
+  overflow: hidden;
+}
+#brand-icon {
+  position: relative;
+  top: -6px;
+}
+
 #edit-glyphicon, #bookmark-favicon {
   float: right;
 }
