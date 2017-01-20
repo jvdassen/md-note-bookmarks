@@ -4,11 +4,12 @@ block content
   nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
       .navbar-header
-        a.navbar-brand.m-spacing(href='/bookmarks') BOOKMARKS
       ul.nav.navbar-nav
+        li#brand-icon-container
+          a(href='/bookmarks')
+            img#brand-icon(src='/images/inclined-puspin-32-inactive.png')
+
         li.active
-          a(href='/bookmarks') ALL
-        li
           a(href='/bookmarks/add') ADD
         li
           a(href='#')#delete-btn DELETE

@@ -4,10 +4,10 @@ block content
   nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
       .navbar-header
-        a.navbar-brand.m-spacing(href='/bookmarks') BOOKMARKS
       ul.nav.navbar-nav
-        li
-          a(href='/bookmarks') ALL
+        li#brand-icon-container
+          a(href='/bookmarks')
+            img#brand-icon(src='/images/inclined-puspin-32-inactive.png')
         li.active
           a(href='/bookmarks/add') ADD
         li
@@ -27,5 +27,8 @@ block content
       .form-group
         label(for='comment') Description:
         textarea#comment.form-control(rows='5')
+      .form-group
+        label(for='tags') Tags:
+        input#tags.form-control(type='text', data-role='tagsinput')
 
     button#bookmark-submit-manual.btn.btn-primary.btn-block Submit
