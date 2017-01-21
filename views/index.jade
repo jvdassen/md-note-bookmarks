@@ -26,5 +26,9 @@ block content
               //span#edit-glyphicon.glyphicon.glyphicon-pencil
               if bookmark.favicon
                 img(src= bookmark.favicon)#bookmark-favicon
+            .tag-labels-container
+              if bookmark.tags
+                for tag in bookmark.tags
+                  span.label.label-info= tag
             a(href= bookmark.url)= bookmark.url
             p= bookmark.description

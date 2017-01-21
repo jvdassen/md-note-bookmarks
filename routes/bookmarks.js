@@ -15,6 +15,7 @@ var bookmarkSchema = mongoose.Schema({
 , title: String
 , description: String
 , favicon: String
+, tags: [String]
 });
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
 Bookmark.find(function(err, bookmarks){
@@ -30,8 +31,10 @@ router.post('/', function(req, res, next) {
       url: req.body.url
       , title: req.body.title
       , description: req.body.description
+      , tags: req.body.tags
       , favicon: favicon
     });
+    console.log(req.body.tags);
 
     bm.save(function(err, bm) {
       if (err) return console.error(err, '##@@#');

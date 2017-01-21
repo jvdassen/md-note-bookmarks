@@ -20,6 +20,7 @@
   margin: 0;
   width: auto;
   max-width: inherit;
+  min-width: 60px;
 }
 .bootstrap-tagsinput.form-control input::-moz-placeholder {
   color: #777;

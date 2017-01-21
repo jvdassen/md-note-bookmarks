@@ -7,9 +7,7 @@ a {
   color: #00B7FF;
 }
  */
- body {
-   background-color: rgb(39,56,86);
- }
+
 #invisible{
   display: none;
 }
@@ -61,6 +59,12 @@ a {
 
 .navbar-right {
   float: right!important;
+}
+.bootstrap-tagsinput .label-info{
+  background-color: rgb(31,31,31);
+}
+.tag-labels-container .label{
+  margin-right: 1px;
 }
 @media screen and (max-width : 768px) {
   .container {

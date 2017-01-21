@@ -12,7 +12,8 @@ jQuery( document ).ready(function() {
 			  data: {
 					url: url,
 					description: jQuery('#comment').val(),
-					title: jQuery('#usr').val()
+					title: jQuery('#usr').val(),
+					tags: jQuery('#tags').tagsinput('items')
 				}
 		});
 		window.location.href = "/bookmarks";
@@ -45,7 +46,7 @@ jQuery( document ).ready(function() {
 			window.location.href = jQuery(this).children('a').attr('href');
 		}
 		else {
-			jQuery(this).remove();
+			jQuery(this).parent().remove();
 			var dataid = jQuery(this).attr('data').replace(/^"/, '').replace(/"$/, '');
 			jQuery.ajax({
 				url: '/bookmarks/' + dataid,
