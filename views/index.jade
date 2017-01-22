@@ -12,22 +12,21 @@ block content
           a(href='/bookmarks/add') ADD
         li
           a(href='#')#delete-btn DELETE
-        li
-          a(href='#')#edit-btn EDIT
-        li
-          a(href='#') TAGS
+        form.navbar-form.navbar-left
+          .form-group
+            input(type='text', placeholder='Search by title').form-control#title-search-bar
 
   .container
     ul.list-unstyled
       for bookmark in bookmarks
         .bookmark-container.col-sm-4.col-md-3
           li.bookmark-item(data= bookmark._id)
-            h4= bookmark.title
+            h4.bookmark-title= bookmark.title
               if bookmark.favicon
                 img(src= bookmark.favicon)#bookmark-favicon
             .tag-labels-container
               if bookmark.tags
                 for tag in bookmark.tags
                   span.label.label-info= tag
-            a(href= bookmark.url)= bookmark.url
-            p= bookmark.description
+            a(href= bookmark.url).bookmark-url= bookmark.url
+            p.bookmark-description= bookmark.description

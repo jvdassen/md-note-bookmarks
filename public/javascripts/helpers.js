@@ -1,7 +1,17 @@
 jQuery( document ).ready(function() {
 	var deleting = false;
+	jQuery('#title-search-bar').focus()
+
 
 	var tagheader = '<ul id="tag-highlight" class="nav navbar-nav">'
+	// adds a new selector containsi for case-insensitive matching
+	jQuery.extend(jQuery.expr[':'], {
+  'containsi': function(elem, i, match, array){
+    return (elem.textContent || elem.innerText || '').toLowerCase()
+    .indexOf((match[3] || "").toLowerCase()) >= 0;
+  	}
+	});
+
 	jQuery.get({
 		url: '/bookmarks/tags/',
 		dataType: 'json',
@@ -15,12 +25,23 @@ jQuery( document ).ready(function() {
 			jQuery('.navbar-tag').click(function(){
 				var tag = jQuery(this).text().toLowerCase();
 				jQuery('.bookmark-item').hide();
-				jQuery('.label-info:contains(' + tag +')').parent().parent().show()
+				jQuery('.label-info:containsi(' + tag +')').parent().parent().show()
+
 			});
 		},
 
 	});
 
+
+	jQuery('#title-search-bar').keydown(function(){
+		var userinput = jQuery(this).val();
+		jQuery('.bookmark-item').hide();
+		jQuery('.bookmark-title:containsi(' + userinput +')').parent().show()
+		// TODO allow this to be deleted on a global level
+		jQuery('.bookmark-url:containsi(' + userinput +')').parent().show()
+		jQuery('.bookmark-description:containsi(' + userinput +')').parent().show()
+
+	});
 
 
 	jQuery('#bookmark-submit-manual').click(function(){
