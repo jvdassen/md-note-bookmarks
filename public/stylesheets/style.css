@@ -66,6 +66,9 @@ a {
 .tag-labels-container .label{
   margin-right: 1px;
 }
+#tag-highlight {
+  float: right;
+}
 @media screen and (max-width : 768px) {
   .container {
     margin-top: 150px;

@@ -8,13 +8,20 @@ jQuery( document ).ready(function() {
 		success: (data)=>{
 			sortedtags = Object.keys(data).sort(function(a,b){return data[a]-data[b]});
 			jQuery(sortedtags.slice(-5).reverse()).each(function(i,tag){
-				tagheader += '<li><a href=#>' + tag.toUpperCase()
+				tagheader += '<li class="navbar-tag"><a href=#>' + tag.toUpperCase()
 					+'</a></li>'
 			});
 			jQuery('.container-fluid').append(tagheader + '</ul>');
+			jQuery('.navbar-tag').click(function(){
+				var tag = jQuery(this).text().toLowerCase();
+				jQuery('.bookmark-item').hide();
+				jQuery('.label-info:contains(' + tag +')').parent().parent().show()
+			});
 		},
 
 	});
+
+
 
 	jQuery('#bookmark-submit-manual').click(function(){
 		url = jQuery('#url').val();

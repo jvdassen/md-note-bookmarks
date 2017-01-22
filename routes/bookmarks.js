@@ -76,21 +76,19 @@ router.get('/add/', function(req, res, next) {
 
 router.get('/tags', function(req, res, next){
   var alltags = Bookmark.distinct('tags', function(err, tags) {
-    var countedtags = {}
+    var countedtags = {};
 
     async.each(tags, function(tag, cb){
         Bookmark.count({'tags': tag}, function(err, count){
           countedtags[tag] = count;
-          console.log(tag, count);
           cb();
-
         });
       },
       function(error){
         if (error) {
           throw error;
         }
-        res.json(countedtags)
+        res.json(countedtags);
       });
   });
 });
