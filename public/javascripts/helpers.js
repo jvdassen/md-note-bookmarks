@@ -1,12 +1,27 @@
 jQuery( document ).ready(function() {
 	var deleting = false;
 
+	var tagheader = '<ul id="tag-highlight" class="nav navbar-nav">'
+	jQuery.get({
+		url: '/bookmarks/tags/',
+		dataType: 'json',
+		success: (data)=>{
+			sortedtags = Object.keys(data).sort(function(a,b){return data[a]-data[b]});
+			jQuery(sortedtags.slice(-5).reverse()).each(function(i,tag){
+				tagheader += '<li><a href=#>' + tag.toUpperCase()
+					+'</a></li>'
+			});
+			jQuery('.container-fluid').append(tagheader + '</ul>');
+		},
+
+	});
+
 	jQuery('#bookmark-submit-manual').click(function(){
 		url = jQuery('#url').val();
 		if (!url.match(/http/i)) {
 			url = 'http://' + url;
 		}
-		$.ajax({
+		jQuery.ajax({
 			  type: "POST",
 			  url: '/bookmarks/',
 			  data: {

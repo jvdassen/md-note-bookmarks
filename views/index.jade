@@ -23,7 +23,6 @@ block content
         .bookmark-container.col-sm-4.col-md-3
           li.bookmark-item(data= bookmark._id)
             h4= bookmark.title
-              //span#edit-glyphicon.glyphicon.glyphicon-pencil
               if bookmark.favicon
                 img(src= bookmark.favicon)#bookmark-favicon
             .tag-labels-container

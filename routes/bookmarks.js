@@ -3,6 +3,7 @@ var main = require('../app');
 var router = express.Router();
 var mongoose = require('mongoose');
 var favicon = require('favicon');
+var async = require('async')
 mongodburl = 'mongodb://localhost:3001/bookmarks';
 
 mongoose.connect(mongodburl);
@@ -71,6 +72,27 @@ router.get('/add/', function(req, res, next) {
 	else{
 		res.render('bookmark-manual', { title: 'Add a Bookmark' });
 	}
+});
+
+router.get('/tags', function(req, res, next){
+  var alltags = Bookmark.distinct('tags', function(err, tags) {
+    var countedtags = {}
+
+    async.each(tags, function(tag, cb){
+        Bookmark.count({'tags': tag}, function(err, count){
+          countedtags[tag] = count;
+          console.log(tag, count);
+          cb();
+
+        });
+      },
+      function(error){
+        if (error) {
+          throw error;
+        }
+        res.json(countedtags)
+      });
+  });
 });
 
 router.get('/:id', function(req, res, next) {
