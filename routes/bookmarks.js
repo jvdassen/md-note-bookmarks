@@ -3,6 +3,7 @@ var main = require('../app');
 var router = express.Router();
 var mongoose = require('mongoose');
 var favicon = require('favicon');
+var fs = require('fs');
 var async = require('async')
 var webshot = require('webshot');
 mongodburl = 'mongodb://localhost:3001/bookmarks';
@@ -114,11 +115,18 @@ router.get('/snapshot/:id', function(req, res, next) {
     "use strict";
     let url = bookmark.url;
 
-    console.log(url);
-    webshot(url, 'public/snapshots/' + req.params.id + '.png', snapshotoptions, function(err){
-      console.log(err);
+    if (!fs.existsSync('public/snapshots/' + req.params.id + '.png')) {
+
+      console.log('creating snapshot...');
+      webshot(url, 'public/snapshots/' + req.params.id + '.png', snapshotoptions, function(err){
+        console.log(err);
+        res.redirect('/' +'snapshots/' + req.params.id + '.png');
+      });
+    }
+    else {
+      console.log('snapshot found')
       res.redirect('/' +'snapshots/' + req.params.id + '.png');
-    });
+    }
   });
 });
 

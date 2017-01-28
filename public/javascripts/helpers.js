@@ -79,7 +79,6 @@ jQuery( document ).ready(function() {
 					window.location.href = "/bookmarks";
 				}
 		});
-		console.log(jQuery('#invisible').text())
 		window.location.href = "/bookmarks";
 
 	});
@@ -110,8 +109,9 @@ jQuery( document ).ready(function() {
 			jQuery('.bookmark-item').css('outline', 'none');
 			jQuery('.bookmark-item').hover(
 				function(){
-					jQuery(this).css('outline', '1px solid rgb(180,180,180)');},
-				function(){
+					jQuery(this).css('outline', '1px solid rgb(180,180,180)');
+				}
+				, function(){
 					jQuery(this).css('outline', 'none');
 			});
 		}
@@ -121,6 +121,22 @@ jQuery( document ).ready(function() {
 			jQuery('#delete-btn').text('DELETE');
 
 		}
+	});
+	jQuery('.bookmark-item').hover(function(){
+		if (!deleting) {
+			var bmid = jQuery(this).attr('data');
+
+			bmid = bmid.replace('"', '').replace('"', '');
+			jQuery(this).css('background-image', 'url("/bookmarks/snapshot/' + bmid + '")');
+			jQuery(this).css('background-size', 'cover');
+			jQuery(this).children().hide();
+		}
+	}
+	,function(){
+		jQuery(this).css('background-image', 'none');
+
+		jQuery(this).children().show();
+
 	});
 	jQuery('#brand-icon-container').hover(
 		function() {
