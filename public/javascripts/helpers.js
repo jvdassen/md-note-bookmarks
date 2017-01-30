@@ -21,7 +21,7 @@ jQuery( document ).ready(function() {
 				tagheader += '<li class="navbar-tag"><a href=#>' + tag.toUpperCase()
 					+'</a></li>'
 			});
-			jQuery('.container-fluid').append(tagheader + '</ul>');
+			jQuery('.tag-navbar').append(tagheader + '</ul>');
 			jQuery('.navbar-tag').click(function(){
 				var tag = jQuery(this).text().toLowerCase();
 				jQuery('.bookmark-item').hide();
@@ -32,7 +32,6 @@ jQuery( document ).ready(function() {
 
 	});
 
-
 	jQuery('#title-search-bar').keydown(function(){
 		var userinput = jQuery(this).val();
 		jQuery('.bookmark-item').hide();
@@ -42,7 +41,6 @@ jQuery( document ).ready(function() {
 		jQuery('.bookmark-description:containsi(' + userinput +')').parent().show()
 
 	});
-
 
 	jQuery('#bookmark-submit-manual').click(function(){
 		url = jQuery('#url').val();
@@ -80,12 +78,13 @@ jQuery( document ).ready(function() {
 				}
 		});
 		window.location.href = "/bookmarks";
-
 	});
 
 	jQuery('.bookmark-item').click(function(){
 		if (!deleting) {
-			window.location.href = jQuery(this).children('a').attr('href');
+			if (!jQuery(this).children('button').data('clicked')) {
+				window.location.href = jQuery(this).children('a').attr('href');
+			}
 		}
 		else {
 			jQuery(this).parent().remove();
@@ -130,14 +129,23 @@ jQuery( document ).ready(function() {
 			jQuery(this).css('background-image', 'url("/bookmarks/snapshot/' + bmid + '")');
 			jQuery(this).css('background-size', 'cover');
 			jQuery(this).children().hide();
+			jQuery('.bookmark-newtab-btn').show();
+
 		}
 	}
 	,function(){
 		jQuery(this).css('background-image', 'none');
 
 		jQuery(this).children().show();
+		jQuery('.bookmark-newtab-btn').hide();
 
 	});
+
+	jQuery('.bookmark-newtab-btn').click(function() {
+		jQuery(this).data('clicked', true);
+		window.open(jQuery(this).parent().children('a').attr('href'), '_blank');
+	});
+
 	jQuery('#brand-icon-container').hover(
 		function() {
 			jQuery('#brand-icon').attr('src', '/images/inclined-puspin-32-active.png')

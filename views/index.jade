@@ -2,7 +2,7 @@ extends layout
 
 block content
   nav.navbar.navbar-inverse.navbar-fixed-top
-    .container-fluid
+    .container-fluid.tag-navbar
       .navbar-header
       ul.nav.navbar-nav
         li.active#brand-icon-container
@@ -30,3 +30,5 @@ block content
                   span.label.label-info= tag
             a(href= bookmark.url).bookmark-url= bookmark.url
             p.bookmark-description= bookmark.description
+            button.bookmark-newtab-btn
+              .glyphicon.glyphicon-arrow-up.new-tab-label
