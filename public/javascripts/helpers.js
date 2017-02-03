@@ -129,7 +129,7 @@ jQuery( document ).ready(function() {
 			jQuery(this).css('background-image', 'url("/bookmarks/snapshot/' + bmid + '")');
 			jQuery(this).css('background-size', 'cover');
 			jQuery(this).children().hide();
-			jQuery('.bookmark-newtab-btn').show();
+			jQuery(this).children('.bookmark-newtab-btn').show();
 
 		}
 	}

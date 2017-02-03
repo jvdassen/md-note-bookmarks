@@ -27,7 +27,7 @@ block content
             .tag-labels-container
               if bookmark.tags
                 for tag in bookmark.tags
-                  span.label.label-info= tag
+                  span.label.label-primary= tag
             a(href= bookmark.url).bookmark-url= bookmark.url
             p.bookmark-description= bookmark.description
             button.bookmark-newtab-btn
