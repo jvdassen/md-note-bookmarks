@@ -24,8 +24,8 @@ jQuery( document ).ready(function() {
 			jQuery('.tag-navbar').append(tagheader + '</ul>');
 			jQuery('.navbar-tag').click(function(){
 				var tag = jQuery(this).text().toLowerCase();
-				jQuery('.bookmark-item').hide();
-				jQuery('.label-info:containsi(' + tag +')').parent().parent().show()
+				jQuery('.bookmark-container').hide();
+				jQuery('.label-primary:containsi(' + tag +')').parent().parent().parent().show()
 
 			});
 		},
@@ -34,11 +34,11 @@ jQuery( document ).ready(function() {
 
 	jQuery('#title-search-bar').keydown(function(){
 		var userinput = jQuery(this).val();
-		jQuery('.bookmark-item').hide();
-		jQuery('.bookmark-title:containsi(' + userinput +')').parent().show()
-		// TODO allow this to be deleted on a global level
-		jQuery('.bookmark-url:containsi(' + userinput +')').parent().show()
-		jQuery('.bookmark-description:containsi(' + userinput +')').parent().show()
+		jQuery('.bookmark-container').hide();
+		jQuery('.bookmark-title:containsi(' + userinput +')').parent().parent().show();
+		jQuery('.bookmark-url:containsi(' + userinput +')').parent().parent().show();
+		jQuery('.bookmark-description:containsi(' + userinput +')').parent().parent().show();
+		jQuery('.label-primary:containsi(' + userinput +')').parent().parent().parent().show();
 
 	});
 
