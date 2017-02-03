@@ -1,5 +1,9 @@
+var filteringtags = [];
+var filtered;
 jQuery( document ).ready(function() {
 	var deleting = false;
+	var filteringtags = [];
+
 	jQuery('#title-search-bar').focus()
 
 
@@ -23,10 +27,34 @@ jQuery( document ).ready(function() {
 			});
 			jQuery('.tag-navbar').append(tagheader + '</ul>');
 			jQuery('.navbar-tag').click(function(){
-				var tag = jQuery(this).text().toLowerCase();
-				jQuery('.bookmark-container').hide();
-				jQuery('.label-primary:containsi(' + tag +')').parent().parent().parent().show()
 
+				var tag = jQuery(this).text().toLowerCase();
+				// uniquely add the tag to the filtering array
+				if (filteringtags.indexOf(tag) == -1) {
+					filteringtags.push(tag);
+					jQuery(this).attr('class', 'navbar-tag active');
+
+				}
+				else {
+					filteringtags.pop(filteringtags.indexOf(tag));
+					jQuery(this).attr('class', 'navbar-tag')
+
+				}
+
+				jQuery('.bookmark-container').hide();
+				filtered = jQuery('.label-primary:containsi(' + filteringtags[0] +')').parent().parent().parent()
+				console.log(filtered)
+				// filter the tags based on all tags and display them
+				for (var i = 1; i < filteringtags.length; i++) {
+					filtered = filtered.children().children().children('.label-primary:containsi(' + filteringtags[i] +')').parent().parent().parent();
+				}
+				if (filtered.length) {
+					filtered.show();
+
+				}else {
+					jQuery('.bookmark-container').show();
+
+				}
 			});
 		},
 

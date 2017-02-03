@@ -65,7 +65,7 @@ a {
   background-color: rgb(31,31,31);
 }
 .tag-labels-container .label{
-  margin-right: 1px;
+  margin-right: 2px;
 }
 #tag-highlight {
   float: right;
