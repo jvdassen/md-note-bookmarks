@@ -60,7 +60,7 @@ jQuery( document ).ready(function() {
 
 	});
 
-	jQuery('#title-search-bar').keydown(function(){
+	jQuery('#title-search-bar').keyup(function(){
 		var userinput = jQuery(this).val();
 		jQuery('.bookmark-container').hide();
 		jQuery('.bookmark-title:containsi(' + userinput +')').parent().parent().show();
