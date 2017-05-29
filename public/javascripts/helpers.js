@@ -21,7 +21,7 @@ jQuery( document ).ready(function() {
 		dataType: 'json',
 		success: (data)=>{
 			sortedtags = Object.keys(data).sort(function(a,b){return data[a]-data[b]});
-			jQuery(sortedtags.slice(-5).reverse()).each(function(i,tag){
+			jQuery(sortedtags.slice(-10).reverse()).each(function(i,tag){
 				tagheader += '<li class="navbar-tag"><a href=#>' + tag.toUpperCase()
 					+'</a></li>'
 			});
