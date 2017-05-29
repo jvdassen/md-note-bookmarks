@@ -1,5 +1,9 @@
+var filteringtags = [];
+var filtered;
 jQuery( document ).ready(function() {
 	var deleting = false;
+	var filteringtags = [];
+
 	jQuery('#title-search-bar').focus()
 
 
@@ -17,32 +21,54 @@ jQuery( document ).ready(function() {
 		dataType: 'json',
 		success: (data)=>{
 			sortedtags = Object.keys(data).sort(function(a,b){return data[a]-data[b]});
-			jQuery(sortedtags.slice(-5).reverse()).each(function(i,tag){
+			jQuery(sortedtags.slice(-10).reverse()).each(function(i,tag){
 				tagheader += '<li class="navbar-tag"><a href=#>' + tag.toUpperCase()
 					+'</a></li>'
 			});
-			jQuery('.container-fluid').append(tagheader + '</ul>');
+			jQuery('.tag-navbar').append(tagheader + '</ul>');
 			jQuery('.navbar-tag').click(function(){
-				var tag = jQuery(this).text().toLowerCase();
-				jQuery('.bookmark-item').hide();
-				jQuery('.label-info:containsi(' + tag +')').parent().parent().show()
 
+				var tag = jQuery(this).text().toLowerCase();
+				// uniquely add the tag to the filtering array
+				if (filteringtags.indexOf(tag) == -1) {
+					filteringtags.push(tag);
+					jQuery(this).attr('class', 'navbar-tag active');
+
+				}
+				else {
+					filteringtags.pop(filteringtags.indexOf(tag));
+					jQuery(this).attr('class', 'navbar-tag')
+
+				}
+
+				jQuery('.bookmark-container').hide();
+				filtered = jQuery('.label-primary:containsi(' + filteringtags[0] +')').parent().parent().parent()
+				console.log(filtered)
+				// filter the tags based on all tags and display them
+				for (var i = 1; i < filteringtags.length; i++) {
+					filtered = filtered.children().children().children('.label-primary:containsi(' + filteringtags[i] +')').parent().parent().parent();
+				}
+				if (filtered.length) {
+					filtered.show();
+
+				}else {
+					jQuery('.bookmark-container').show();
+
+				}
 			});
 		},
 
 	});
 
-
-	jQuery('#title-search-bar').keydown(function(){
+	jQuery('#title-search-bar').keyup(function(){
 		var userinput = jQuery(this).val();
-		jQuery('.bookmark-item').hide();
-		jQuery('.bookmark-title:containsi(' + userinput +')').parent().show()
-		// TODO allow this to be deleted on a global level
-		jQuery('.bookmark-url:containsi(' + userinput +')').parent().show()
-		jQuery('.bookmark-description:containsi(' + userinput +')').parent().show()
+		jQuery('.bookmark-container').hide();
+		jQuery('.bookmark-title:containsi(' + userinput +')').parent().parent().show();
+		jQuery('.bookmark-url:containsi(' + userinput +')').parent().parent().show();
+		jQuery('.bookmark-description:containsi(' + userinput +')').parent().parent().show();
+		jQuery('.label-primary:containsi(' + userinput +')').parent().parent().parent().show();
 
 	});
-
 
 	jQuery('#bookmark-submit-manual').click(function(){
 		url = jQuery('#url').val();
@@ -79,14 +105,14 @@ jQuery( document ).ready(function() {
 					window.location.href = "/bookmarks";
 				}
 		});
-		console.log(jQuery('#invisible').text())
 		window.location.href = "/bookmarks";
-
 	});
 
 	jQuery('.bookmark-item').click(function(){
 		if (!deleting) {
-			window.location.href = jQuery(this).children('a').attr('href');
+			if (!jQuery(this).children('button').data('clicked')) {
+				window.location.href = jQuery(this).children('a').attr('href');
+			}
 		}
 		else {
 			jQuery(this).parent().remove();
@@ -110,8 +136,9 @@ jQuery( document ).ready(function() {
 			jQuery('.bookmark-item').css('outline', 'none');
 			jQuery('.bookmark-item').hover(
 				function(){
-					jQuery(this).css('outline', '1px solid rgb(180,180,180)');},
-				function(){
+					jQuery(this).css('outline', '1px solid rgb(180,180,180)');
+				}
+				, function(){
 					jQuery(this).css('outline', 'none');
 			});
 		}
@@ -122,6 +149,31 @@ jQuery( document ).ready(function() {
 
 		}
 	});
+	jQuery('.bookmark-item').hover(function(){
+		if (!deleting) {
+			var bmid = jQuery(this).attr('data');
+
+			bmid = bmid.replace('"', '').replace('"', '');
+			jQuery(this).css('background-image', 'url("/bookmarks/snapshot/' + bmid + '")');
+			jQuery(this).css('background-size', 'cover');
+			jQuery(this).children().hide();
+			jQuery(this).children('.bookmark-newtab-btn').show();
+
+		}
+	}
+	,function(){
+		jQuery(this).css('background-image', 'none');
+
+		jQuery(this).children().show();
+		jQuery('.bookmark-newtab-btn').hide();
+
+	});
+
+	jQuery('.bookmark-newtab-btn').click(function() {
+		jQuery(this).data('clicked', true);
+		window.open(jQuery(this).parent().children('a').attr('href'), '_blank');
+	});
+
 	jQuery('#brand-icon-container').hover(
 		function() {
 			jQuery('#brand-icon').attr('src', '/images/inclined-puspin-32-active.png')

@@ -1,11 +1,11 @@
 extends layout
 
 block content
-  nav.navbar.navbar-inverse.navbar-fixed-top
-    .container-fluid
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
+    .container-fluid.tag-navbar
       .navbar-header
       ul.nav.navbar-nav
-        li.active#brand-icon-container
+        li#brand-icon-container
           a(href='/bookmarks')
             img#brand-icon.brand-active(src='/images/inclined-puspin-32-active.png')
         li
@@ -27,6 +27,8 @@ block content
             .tag-labels-container
               if bookmark.tags
                 for tag in bookmark.tags
-                  span.label.label-info= tag
+                  span.label.label-primary= tag
             a(href= bookmark.url).bookmark-url= bookmark.url
             p.bookmark-description= bookmark.description
+            button.bookmark-newtab-btn
+              .glyphicon.glyphicon-arrow-up.new-tab-label

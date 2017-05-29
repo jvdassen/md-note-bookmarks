@@ -3,8 +3,17 @@ var main = require('../app');
 var router = express.Router();
 var mongoose = require('mongoose');
 var favicon = require('favicon');
+var fs = require('fs');
 var async = require('async')
+var webshot = require('webshot');
 mongodburl = 'mongodb://localhost:3001/bookmarks';
+
+const snapshotoptions = {
+  windowSize: {
+    width: 615,
+    height: 435
+  }
+};
 
 mongoose.connect(mongodburl);
 
@@ -94,10 +103,30 @@ router.get('/tags', function(req, res, next){
 });
 
 router.get('/:id', function(req, res, next) {
-  Bookmark.findById(req.params.id, function(err, bookmarks){
+  Bookmark.findById(req.params.id, function(err, bm){
     res.render('bookmark-id',{
-      bookmark : bookmarks
+      bookmark : bm
     });
+  });
+});
+
+router.get('/snapshot/:id', function(req, res, next) {
+  Bookmark.findById(req.params.id, function(err, bookmark){
+    "use strict";
+    let url = bookmark.url;
+
+    if (!fs.existsSync('public/snapshots/' + req.params.id + '.png')) {
+
+      console.log('creating snapshot...');
+      webshot(url, 'public/snapshots/' + req.params.id + '.png', snapshotoptions, function(err){
+        console.log(err);
+        res.redirect('/' +'snapshots/' + req.params.id + '.png');
+      });
+    }
+    else {
+      console.log('snapshot found')
+      res.redirect('/' +'snapshots/' + req.params.id + '.png');
+    }
   });
 });
 

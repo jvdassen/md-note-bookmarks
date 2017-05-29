@@ -29,8 +29,9 @@ a {
   overflow: auto;
   overflow-x: hidden;
 }
+
 #brand-icon-container {
-  height: 40px;
+  height: 45px;
   overflow: hidden;
 }
 #brand-icon {
@@ -43,7 +44,9 @@ a {
 }
 #bookmark-favicon {
   height: 20px;
-  margin-right: 10px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
 }
 .navbar-collapse.collapse {
   display: block!important;
@@ -51,6 +54,9 @@ a {
 
 .navbar-nav>li, .navbar-nav {
   float: left !important;
+}
+.navbar-default .navbar-nav>li>a {
+  color: white;
 }
 
 .navbar-nav.navbar-right:last-child {
@@ -60,11 +66,8 @@ a {
 .navbar-right {
   float: right!important;
 }
-.bootstrap-tagsinput .label-info{
-  background-color: rgb(31,31,31);
-}
 .tag-labels-container .label{
-  margin-right: 1px;
+  margin-right: 2px;
 }
 #tag-highlight {
   float: right;
@@ -81,4 +84,24 @@ a {
   .container {
     margin-top: 100px;
   }
+}
+.new-tab-label{
+  transform: rotate(45deg);
+}
+.bookmark-newtab-btn {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(51,51,51);
+  background: white;
+  border: none;
+  width: 25px;
+  height: 25px;
+}
+.navbar-custom, .label-primary {
+  background-color:rgb(65,184,131);
 }
