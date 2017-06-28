@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var bookmarks = require('./routes/bookmarks');
 
-var exports = module.exports = {};
+var exports = module.exports;
 var app = express();
 
 // view engine setup
@@ -16,16 +16,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('port', 8080);
 app.listen(8080);
-
-var mongodburl = 'mongodb://localhost:3001/bookmarks';
-
-if (process.argv.length>2){
-	mongodburl = process.argv[2];
-  }
-else {
-	console.log("no mongodb url passed. using default settings");
-	console.log("E.g: $ node app.js 'mongodb://localhost:3001/db'");
-}
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
