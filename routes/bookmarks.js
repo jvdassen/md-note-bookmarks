@@ -8,7 +8,7 @@ var async = require('async')
 var webshot = require('webshot');
 var mainapp = require('../app')
 
-mongodburl = 'mongodb://' + process.env.MONGODB_PORT_27017_TCP_ADDR + ':' + process.env.MONGODB_PORT_27017_TCP_PORT + '/mydb';
+mongodburl = 'mongodb://' + process.env.MONGODB_PORT_27017_TCP_ADDR + ':' + process.env.MONGODB_PORT_27017_TCP_PORT + '/bookmarks';
 
 const snapshotoptions = {
   windowSize: {
