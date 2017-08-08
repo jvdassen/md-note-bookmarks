@@ -19,7 +19,7 @@ jQuery( document ).ready(function() {
 	jQuery.get({
 		url: '/bookmarks/tags/',
 		dataType: 'json',
-		success: (data)=>{
+		success: function(data){
 			sortedtags = Object.keys(data).sort(function(a,b){return data[a]-data[b]});
 			jQuery(sortedtags.slice(-10).reverse()).each(function(i,tag){
 				tagheader += '<li class="navbar-tag"><a href=#>' + tag.toUpperCase()
