@@ -27,6 +27,7 @@ var bookmarkSchema = mongoose.Schema({
 , title: String
 , description: String
 , favicon: String
+, user: String
 , tags: [String]
 });
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
@@ -38,13 +39,14 @@ Bookmark.find(function(err, bookmarks){
 router.post('/', function(req, res, next) {
   var favicon_url;
   favicon(req.body.url, function(err, favicon){
-    if (req.body) {
+    if (req.body && req.user) {
   		var bm = new Bookmark({
       url: req.body.url
       , title: req.body.title
       , description: req.body.description
       , tags: req.body.tags
       , favicon: favicon
+      , user: req.user.id
     });
     console.log(req.body.tags);
 
@@ -64,11 +66,17 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  Bookmark.find({}, function(err, bookmarks){
-      res.render('index',{
-      bookmarks : bookmarks
-    });
-  });
+  console.log('the user that is logged in:', req.user);
+  if (req.user) {
+      Bookmark.find({user:req.user.id}, function(err, bookmarks){
+          res.render('index',{
+          bookmarks : bookmarks
+        });
+      });
+  }
+  else {
+      res.redirect('/login');
+  }
 });
 
 
