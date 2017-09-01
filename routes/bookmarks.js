@@ -94,7 +94,7 @@ router.get('/add/', function(req, res, next) {
 });
 
 router.get('/tags', function(req, res, next){
-  var alltags = Bookmark.distinct('tags', function(err, tags) {
+  var alltags = Bookmark.find({user: req.user.id}).distinct('tags', function(err, tags) {
     var countedtags = {};
 
     async.each(tags, function(tag, cb){

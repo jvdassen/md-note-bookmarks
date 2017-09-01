@@ -11,11 +11,11 @@ var LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-      if (username == '' && password == '') {
-          return done(null, {name: '', id: ''})
+      if (username == 'jan' && password == 'gg') {
+          return done(null, {name: '', id: '123'})
       }
-      else if (username == '' && password == '') {
-          return done(null, {name: '', id: ''})
+      else if (username == 'dd' && password == 'mmmo') {
+          return done(null, {name: '', id: '345'})
 
       }
       else {
@@ -29,14 +29,14 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    if (id === '') {
-        return done(null, {name: '', id: ''});
+    if (id === '123') {
+        return done(null, {name: 'jan', id: '123'});
     }
-    else if (id === '3jl4ke462w5') {
-         return done(null, {name: '', id: ''})
+    else if (id === '345') {
+         return done(null, {name: 'mart', id: '345'})
     }
     else {
-        console.err('Error deserialicing user.')
+        console.error('Error deserialicing user.')
     }
 
 });
