@@ -52,10 +52,14 @@ a {
 .navbar-nav>li, .navbar-nav {
   float: left !important;
 }
+*/
 .navbar-default .navbar-nav>li>a {
   color: white;
 }
-
+.collapse-icon-white {
+  background-color: white!important;
+}
+/*
 .navbar-nav.navbar-right:last-child {
   margin-right: -15px !important;
 }
@@ -69,12 +73,13 @@ a {
 #tag-highlight {
   float: right;
 }*/
-@media screen and (max-width : 768px) {
+
+/*@media screen and (max-width : 768px) {
   .container {
     margin-top: 100px;
   }
   .bookmark-item {
-    /*height: auto;*/
+    /height: auto;
   }
 }
 @media screen and (min-width : 769px) {
@@ -83,6 +88,10 @@ a {
   }
 }
 
+*/
+.container {
+  margin-top: 70px;
+}
 .new-tab-label{
   transform: rotate(45deg);
 }
