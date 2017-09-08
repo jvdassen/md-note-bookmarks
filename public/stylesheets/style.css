@@ -59,6 +59,9 @@ a {
 .collapse-icon-white {
   background-color: white!important;
 }
+.tag-search-wrapper {
+  border: none;
+}
 /*
 .navbar-nav.navbar-right:last-child {
   margin-right: -15px !important;

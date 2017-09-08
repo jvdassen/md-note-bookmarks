@@ -16,9 +16,9 @@ block content
             a(href='/bookmarks/add') ADD
           li
             a(href='#')#delete-btn DELETE
-
-        .form-group
-          input(type='text', placeholder='Search by title').form-control#title-search-bar
+        form.navbar-form.navbar-left.tag-search-wrapper
+          .form-group
+            input(type='text', placeholder='Search by Title, Tag or URL').form-control#title-search-bar
         ul.nav.navbar-nav.navbar-right.tag-navbar
 
   .container
