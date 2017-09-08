@@ -48,10 +48,7 @@ a {
   top: 10px;
   right: 20px;
 }
-.navbar-collapse.collapse {
-  display: block!important;
-}
-
+/*
 .navbar-nav>li, .navbar-nav {
   float: left !important;
 }
@@ -66,18 +63,18 @@ a {
 .navbar-right {
   float: right!important;
 }
-.tag-labels-container .label{
+/*.tag-labels-container .label{
   margin-right: 2px;
 }
 #tag-highlight {
   float: right;
-}
+}*/
 @media screen and (max-width : 768px) {
   .container {
-    margin-top: 150px;
+    margin-top: 100px;
   }
   .bookmark-item {
-    height: auto;
+    /*height: auto;*/
   }
 }
 @media screen and (min-width : 769px) {
@@ -85,6 +82,7 @@ a {
     margin-top: 100px;
   }
 }
+
 .new-tab-label{
   transform: rotate(45deg);
 }

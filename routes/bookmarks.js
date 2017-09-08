@@ -55,10 +55,10 @@ router.post('/', function(req, res, next) {
       //console.dir(bm);
     });
 
-  		res.send(req.body);
+  		res.redirect('/bookmarks');
   	}
   	else {
-  		res.send('sup');
+  		res.redirect('/bookmarks');
   	}
 
   });

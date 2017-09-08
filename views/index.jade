@@ -2,19 +2,24 @@ extends layout
 
 block content
   nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
-    .container-fluid.tag-navbar
+    .container-fluid
       .navbar-header
-          ul.nav.navbar-nav
-            li#brand-icon-container
-              a(href='/bookmarks')
-                img#brand-icon.brand-active(src='/images/inclined-puspin-32-active.png')
-            li
-              a(href='/bookmarks/add') ADD
-            li
-              a(href='#')#delete-btn DELETE
-            form.navbar-form.navbar-left
-              .form-group
-                input(type='text', placeholder='Search by title').form-control#title-search-bar
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a(href='/bookmarks').navbar-brand
+          img#brand-icon.brand-active(src='/images/inclined-puspin-32-active.png')
+      .collapse.navbar-collapse#mainnav
+        ul.nav.navbar-nav
+          li
+            a(href='/bookmarks/add') ADD
+          li
+            a(href='#')#delete-btn DELETE
+        form.navbar-form.navbar-left
+          .form-group
+            input(type='text', placeholder='Search by title').form-control#title-search-bar
+        ul.nav.navbar-nav.navbar-right.tag-navbar
 
   .container
     ul.list-unstyled

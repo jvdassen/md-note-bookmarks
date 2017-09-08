@@ -7,7 +7,7 @@ jQuery( document ).ready(function() {
 	jQuery('#title-search-bar').focus()
 
 
-	var tagheader = '<ul id="tag-highlight" class="nav navbar-nav">'
+	var tagheader = ''
 	// adds a new selector containsi for case-insensitive matching
 	jQuery.extend(jQuery.expr[':'], {
   'containsi': function(elem, i, match, array){
@@ -25,7 +25,7 @@ jQuery( document ).ready(function() {
 				tagheader += '<li class="navbar-tag"><a href=#>' + tag.toUpperCase()
 					+'</a></li>'
 			});
-			jQuery('.tag-navbar').append(tagheader + '</ul>');
+			jQuery('.tag-navbar').append(tagheader);
 			jQuery('.navbar-tag').click(function(){
 
 				var tag = jQuery(this).text().toLowerCase();
