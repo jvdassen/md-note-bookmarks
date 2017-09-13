@@ -70,9 +70,11 @@ a {
 .navbar-right {
   float: right!important;
 }
-/*.tag-labels-container .label{
+*/
+.tag-labels-container .label{
   margin-right: 2px;
 }
+/*
 #tag-highlight {
   float: right;
 }*/

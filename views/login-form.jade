@@ -1,12 +1,14 @@
 extends layout
 
 block content
-    form(action='/login', method='post')
-      div
+    form(action='/login', method='post').container
+      div.form-group
         label Username:
-        input(type='text', name='username')
-      div
+        input(type='text', name='username').form-control
+      div.form.group
         label Password:
-        input(type='password', name='password')
-      div
-        input(type='submit', value='Log In')
+        input(type='password', name='password').form-control
+      div.form-group
+        br
+        input(type='submit', value='Log In').form-control.btn.btn-success.btn-block
+

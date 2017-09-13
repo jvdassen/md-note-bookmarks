@@ -8,8 +8,8 @@ var async = require('async')
 var webshot = require('webshot');
 var mainapp = require('../app')
 
-mongodburl = 'mongodb://' + 'localhost' + ':' + '27017' + '/bookmarks';
-
+//mongodburl = 'mongodb://' + 'localhost' + ':' + '27017' + '/bookmarks';
+mongodburl= 'mongo:27017/bookmarks'
 const snapshotoptions = {
   windowSize: {
     width: 615,
