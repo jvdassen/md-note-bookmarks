@@ -78,19 +78,18 @@ a {
 #tag-highlight {
   float: right;
 }*/
+.container {
+  margin-top: 60px;
+}
 
-/*@media screen and (max-width : 768px) {
-  .container {
-    margin-top: 100px;
-  }
-  .bookmark-item {
-    /height: auto;
-  }
+@media screen and (max-width : 768px) {
 }
 @media screen and (min-width : 769px) {
-  .container {
-    margin-top: 100px;
-  }
+    .tag-navbar{
+      height: 50px;
+      width: calc(100% - 400px);
+      overflow: hidden;
+    }
 }
 
 */
