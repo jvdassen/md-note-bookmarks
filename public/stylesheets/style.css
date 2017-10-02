@@ -87,7 +87,7 @@ a {
 @media screen and (min-width : 769px) {
     .tag-navbar{
       height: 50px;
-      width: calc(100% - 400px);
+      width: calc(100% - 420px);
       overflow: hidden;
     }
 }
