@@ -1,21 +1,25 @@
 extends layout
 
 block content
-  nav.navbar.navbar-fixed-top
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
     .container-fluid
       .navbar-header
-      ul.nav.navbar-nav
-        li#brand-icon-container
-          a(href='/bookmarks')
-            img#brand-icon(src='/images/inclined-puspin-32-inactive.png')
-        li.active
-          a(href='/bookmarks/add') ADD
-        li
-          a(href='#')#delete-btn DELETE
-        li
-          a(href='#')#edit-btn EDIT
-        li
-          a(href='#') TAGS
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+          span.icon-bar.collapse-icon-white
+          span.icon-bar.collapse-icon-white
+          span.icon-bar.collapse-icon-white
+        a(href='/bookmarks').navbar-brand
+          img#brand-icon.brand-active(src='/images/inclined-puspin-32-active.png')
+      .collapse.navbar-collapse#mainnav
+        ul.nav.navbar-nav
+          li
+            a(href='/bookmarks/add') ADD
+          li
+            a(href='#')#delete-btn DELETE
+        form.navbar-form.navbar-left.tag-search-wrapper
+          .form-group
+            input(type='text', placeholder='Search by Title, Tag or URL').form-control#title-search-bar
+        ul.nav.navbar-nav.navbar-right.tag-navbar
   .container
     form
       .form-group
