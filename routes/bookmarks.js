@@ -52,8 +52,18 @@ router.post('/', function(req, res, next) {
 
     bm.save(function(err, bm) {
       if (err) return console.error(err, '##@@#');
+
+      if (!fs.existsSync('public/snapshots/' + bm.id + '.png')) {
+        let url = bm.url;
+        console.log('creating snapshot...');
+        webshot(url, 'public/snapshots/' + bm.id + '.png', snapshotoptions, function(err){
+          console.log(err);
+
+        });
+      }
       //console.dir(bm);
     });
+
 
   		res.redirect('/bookmarks');
   	}
