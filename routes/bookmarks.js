@@ -33,6 +33,7 @@ var bookmarkSchema = mongoose.Schema({
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
 Bookmark.find(function(err, bookmarks){
   if (err) return console.error(err);
+  console.log('initial bookmarks', bookmarks);
 });
 
 /* GET users listing. */
