@@ -40,14 +40,14 @@ var User = mongoose.model('User', userSchema);
   console.log('all bms: ', bookmarks)
 });
 
-var admin = new User({password: 'fagala', userName: 'luc', name: 'Luc'});
-
-admin.save(function(err, admin){
-  if (err) {
-    return console.err(err)
-  }
-  console.log('saved: ', admin)
-});
+// var admin = new User({password: '', userName: '', name: ''});
+//
+// admin.save(function(err, admin){
+//   if (err) {
+//     return console.err(err)
+//   }
+//   console.log('saved: ', admin)
+// });
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
