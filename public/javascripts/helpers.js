@@ -15,7 +15,7 @@ jQuery( document ).ready(function() {
     .indexOf((match[3] || "").toLowerCase()) >= 0;
   	}
 	});
-  if (location.href.indexOf('bookmarks')>0 ) {
+  if (location.href.indexOf('/bookmarks')>0 ) {
     jQuery.get({
     	url: '/bookmarks/tags/',
     	dataType: 'json',
