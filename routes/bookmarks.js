@@ -8,8 +8,7 @@ var async = require('async')
 var webshot = require('webshot');
 var mainapp = require('../app')
 
-//mongodburl = 'mongodb://' + 'localhost' + ':' + '27017' + '/bookmarks';
-mongodburl= 'mongo:27017/bookmarks'
+mongodburl= process.env.MONGODBURL
 const snapshotoptions = {
   windowSize: {
     width: 615,
@@ -41,31 +40,30 @@ router.post('/', function(req, res, next) {
   favicon(req.body.url, function(err, favicon){
     if (req.body && req.user) {
   		var bm = new Bookmark({
-      url: req.body.url
-      , title: req.body.title
-      , description: req.body.description
-      , tags: req.body.tags
-      , favicon: favicon
-      , user: req.user.id
-    });
-    console.log(req.body.tags);
+        url: req.body.url
+        , title: req.body.title
+        , description: req.body.description
+        , tags: req.body.tags
+        , favicon: favicon
+        , user: req.user.id
+      });
+      console.log(req.body.tags);
 
-    bm.save(function(err, bm) {
-      if (err) return console.error(err, '##@@#');
+      bm.save(function(err, bm) {
+        if (err) return console.error(err);
+        res.redirect('/bookmarks');
 
-      if (!fs.existsSync('public/snapshots/' + bm.id + '.png')) {
-        let url = bm.url;
-        console.log('creating snapshot...');
-        webshot(url, 'public/snapshots/' + bm.id + '.png', snapshotoptions, function(err){
-          console.log(err);
+        if (!fs.existsSync('public/snapshots/' + bm.id + '.png')) {
+          let url = bm.url;
+          console.log('creating snapshot...');
+          webshot(url, 'public/snapshots/' + bm.id + '.png', snapshotoptions, function(err){
+            console.log(err);
 
-        });
-      }
-      //console.dir(bm);
-    });
+          });
+        }
+        //console.dir(bm);
+      });
 
-
-  		res.redirect('/bookmarks');
   	}
   	else {
   		res.redirect('/bookmarks');
