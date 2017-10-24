@@ -40,7 +40,7 @@ var User = mongoose.model('User', userSchema);
   console.log('all bms: ', bookmarks)
 });
 
-var admin = new User({password: 'yeet', userName: 'jan', name: 'jann'});
+var admin = new User({password: 'fagala', userName: 'luc', name: 'Luc'});
 
 admin.save(function(err, admin){
   if (err) {
