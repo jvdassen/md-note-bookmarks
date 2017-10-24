@@ -15,50 +15,50 @@ jQuery( document ).ready(function() {
     .indexOf((match[3] || "").toLowerCase()) >= 0;
   	}
 	});
+  if (location.href.indexOf('bookmarks')>0 ) {
+    jQuery.get({
+    	url: '/bookmarks/tags/',
+    	dataType: 'json',
+    	success: function(data){
+    		sortedtags = Object.keys(data).sort(function(a,b){return data[a]-data[b]});
+    		jQuery(sortedtags.slice(-16).reverse()).each(function(i,tag){
+    			tagheader += '<li class="navbar-tag"><a href=#>' + tag.toUpperCase()
+    				+'</a></li>'
+    		});
+    		jQuery('.tag-navbar').append(tagheader);
+    		jQuery('.navbar-tag').click(function(){
 
-	jQuery.get({
-		url: '/bookmarks/tags/',
-		dataType: 'json',
-		success: function(data){
-			sortedtags = Object.keys(data).sort(function(a,b){return data[a]-data[b]});
-			jQuery(sortedtags.slice(-16).reverse()).each(function(i,tag){
-				tagheader += '<li class="navbar-tag"><a href=#>' + tag.toUpperCase()
-					+'</a></li>'
-			});
-			jQuery('.tag-navbar').append(tagheader);
-			jQuery('.navbar-tag').click(function(){
+    			var tag = jQuery(this).text().toLowerCase();
+    			// uniquely add the tag to the filtering array
+    			if (filteringtags.indexOf(tag) == -1) {
+    				filteringtags.push(tag);
+    				jQuery(this).attr('class', 'navbar-tag active');
 
-				var tag = jQuery(this).text().toLowerCase();
-				// uniquely add the tag to the filtering array
-				if (filteringtags.indexOf(tag) == -1) {
-					filteringtags.push(tag);
-					jQuery(this).attr('class', 'navbar-tag active');
+    			}
+    			else {
+    				filteringtags.pop(filteringtags.indexOf(tag));
+    				jQuery(this).attr('class', 'navbar-tag')
 
-				}
-				else {
-					filteringtags.pop(filteringtags.indexOf(tag));
-					jQuery(this).attr('class', 'navbar-tag')
+    			}
 
-				}
+    			jQuery('.bookmark-container').hide();
+    			filtered = jQuery('.label-primary:containsi(' + filteringtags[0] +')').parent().parent().parent()
+    			console.log(filtered)
+    			// filter the tags based on all tags and display them
+    			for (var i = 1; i < filteringtags.length; i++) {
+    				filtered = filtered.children().children().children('.label-primary:containsi(' + filteringtags[i] +')').parent().parent().parent();
+    			}
+    			if (filtered.length) {
+    				filtered.show();
 
-				jQuery('.bookmark-container').hide();
-				filtered = jQuery('.label-primary:containsi(' + filteringtags[0] +')').parent().parent().parent()
-				console.log(filtered)
-				// filter the tags based on all tags and display them
-				for (var i = 1; i < filteringtags.length; i++) {
-					filtered = filtered.children().children().children('.label-primary:containsi(' + filteringtags[i] +')').parent().parent().parent();
-				}
-				if (filtered.length) {
-					filtered.show();
+    			}else {
+    				jQuery('.bookmark-container').show();
 
-				}else {
-					jQuery('.bookmark-container').show();
-
-				}
-			});
-		},
-
-	});
+    			}
+    		});
+    	},
+    });
+  }
 
 	jQuery('#title-search-bar').keyup(function(){
 		var userinput = jQuery(this).val();
