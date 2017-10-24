@@ -35,18 +35,19 @@ userSchema.methods.verifyPassword = function(pw) {
 
 var User = mongoose.model('User', userSchema);
 
-User.find(function(err, bookmarks){
+ User.find(function(err, bookmarks){
   if (err) return console.error(err);
+  console.log('all bms: ', bookmarks)
 });
 
-// var admin = new User({password: 'gg', userName: 'jan', name: 'jann'});
-//
-// admin.save(function(err, admin){
-//   if (err) {
-//     return console.err(err)
-//   }
-//   console.log('saved: ', admin)
-// });
+var admin = new User({password: 'yeet', userName: 'jan', name: 'jann'});
+
+admin.save(function(err, admin){
+  if (err) {
+    return console.err(err)
+  }
+  console.log('saved: ', admin)
+});
 
 passport.use(new LocalStrategy(
   function(username, password, done) {

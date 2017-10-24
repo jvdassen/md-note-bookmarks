@@ -9,6 +9,7 @@ var webshot = require('webshot');
 var mainapp = require('../app')
 
 mongodburl= process.env.MONGODBURL
+console.log('connecting to MongoDB at: ', mongodburl)
 const snapshotoptions = {
   windowSize: {
     width: 615,
